@@ -8,8 +8,9 @@ docker run --> docker create + docker start
 ```
 ```
 docker system prune
+will delete: stopped containers, networks not used, dangling images, and **build cache (ALL DOWNLOADED IMAGES)**
 ```
-- will delete: stopped containers, networks not used, dangling images, and **build cache (ALL DOWNLOADED IMAGES)**
+
 ```
 docker stop --> sigterm terminate signal, to give some time to shut itself down and do clean up, save file, or send message. gives 10 seconds, then it kills
 ```
@@ -37,13 +38,22 @@ docker run -it busybox sh
 build image from Dockerfile
 docker build .
 will build image from Dockerfile in current directory. Can be used to rebuild
+
+docker uses cached image for unchanged first portion of dockerfile. **Order of operations matters**
 ```
-- docker uses cached image for unchanged first portion of dockerfile. **Order of operations matters**
+
 
 ```
 add tag to docker build
 docker build -t dockertest/redis:latest .
 convention <docker id> / <repo or project name> : <version>
+```
+
+```
+Buildkit in newer docker versions hides some steps by default, to see this output use progress flag
+docker build --progress=plain .
+
+docker build --no-cache --progress=plain .
 ```
 
 ```
@@ -60,4 +70,15 @@ $ docker ps
 
 create new image
 docker commit -c 'CMD ["redis-server"]' <container id>
+```
+
+```
+run docker container with port mapping
+redirect request from local machine port : to container port
+docker run -p 5000:8080 mlopdocker/simpleweb
+```
+
+```
+Set working directory. All run, copy, etc. commands will execute from this directory
+WORKDIR /usr/app
 ```

@@ -81,4 +81,14 @@ docker run -p 5000:8080 mlopdocker/simpleweb
 ```
 Set working directory. All run, copy, etc. commands will execute from this directory
 WORKDIR /usr/app
-```
+```  
+
+<br/><br/>
+
+**Docker Compose commands**
+
+- separate CLI to gets installed along with docker. 
+- used to start up multiple docker containers at the same time.
+- automates long arguments we were passing to 'docker run'.
+- commands are written in special syntax in yml file 'docker-compose.yml'
+

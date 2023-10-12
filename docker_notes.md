@@ -83,6 +83,11 @@ Set working directory. All run, copy, etc. commands will execute from this direc
 WORKDIR /usr/app
 ```  
 
+```
+-d or --detach flag to run in detach mode, background
+docker run -d 
+```
+
 <br/><br/>
 
 **Docker Compose commands**
@@ -92,3 +97,33 @@ WORKDIR /usr/app
 - automates long arguments we were passing to 'docker run'.
 - commands are written in special syntax in yml file 'docker-compose.yml'
 
+```
+this look in current working dir for docker compose file
+docker compose up  -> equal to docker run myimage
+
+docker build .      __
+docker run myimage  -- > docker-compose up --build
+```
+
+```
+start group of containers in background
+docker-compose up -d
+```
+
+```
+stop group of containers
+docker-compose down
+```
+
+```
+docker compose restart policy
+restart: 'no'  // quotes needed bc no in yml files means false
+restart: always
+restart: on-failure
+restart: unless-stopped
+```
+
+```
+see running containers from docker-compose. Must run is same dir as docker-compose file
+docker-compose ps
+```
